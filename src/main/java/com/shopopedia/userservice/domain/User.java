@@ -14,27 +14,28 @@ public class User {
     @Id
     private String id;
 //2
-    @Getter @Setter
+    //@Getter @Setter
     private String userId = Util.getUserId();
 //3
-    @Getter@Setter
+    //@Getter@Setter
     private String firstName;
 //4
-    @Getter@Setter
+    //@Getter@Setter
     private String lastName;
 //5
-    @Getter@Setter
+    //@Getter@Setter
     private String emailId;
 //6
-    @Getter@Setter
+    //@Getter@Setter
     private String mobileNo;
 //7
-    @Getter@Setter
+    //@Getter@Setter
     private String password;
 //8
-    @Getter @Setter
+    //@Getter @Setter
     private String phoneNo;
 //9
-    @Getter @Setter
+    //@Getter @Setter
     private String roleType;
+    
 }

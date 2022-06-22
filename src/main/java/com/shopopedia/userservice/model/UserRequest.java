@@ -8,24 +8,24 @@ import lombok.Setter;
 public class UserRequest {
 
     //2
-    @Getter @Setter
+    //@Getter @Setter
     private String userId;
     //3
-    @Getter@Setter
+    //@Getter@Setter
     private String firstName;
     //4
-    @Getter@Setter
+    //@Getter@Setter
     private String lastName;
     //5
-    @Getter@Setter
+    //@Getter@Setter
     private String emailId;
     //6
-    @Getter@Setter
+    //@Getter@Setter
     private String mobileNo;
     //7
-    @Getter@Setter
+    //@Getter@Setter
     private String password;
     //
-    @Getter @Setter
+    //@Getter @Setter
     private String roleType;
 }
