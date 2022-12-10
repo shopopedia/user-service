@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/test")
+    @GetMapping("/servertest")
     public ResponseEntity<String> testSecurity(){
         return ResponseEntity.ok("OK");
     }
@@ -49,6 +49,7 @@ public class UserController {
         }
         return ResponseEntity.ok(userResponse);
     }
+    
     @GetMapping("/userId/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable String id){
         logger.info(" ::::: id ::::: "+id);

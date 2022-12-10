@@ -1,2 +1,5 @@
 server:
-  port: 9003
+  port: 9033
+  data:
+    mongodb:
+    uri: mongodb+srv://root:root@shopopedia.pahvw.mongodb.net/?retryWrites=true&w=majority
