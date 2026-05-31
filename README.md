@@ -22,6 +22,8 @@ user-service
         │               ├── UserServiceApplication.java
         │               ├── controller
         │               │   └── UserController.java
+        │               ├── config
+        │               │   └── ApplicationConfig.java
         │               ├── dto
         │               │   ├── ApiResponse.java
         │               │   ├── RegisterUserRequest.java
@@ -64,14 +66,23 @@ user-service
 
 ## Getting Started
 
-Add the service implementation and update this README with:
+Run the service locally:
 
-- Project setup requirements
-- Local development commands
-- Environment variables
-- API endpoints
-- Test and build commands
-- Deployment notes
+```bash
+./gradlew bootRun
+```
+
+Build the project:
+
+```bash
+./gradlew build
+```
+
+## API Endpoints
+
+- `POST /api/v1/users/register`
+- `GET /api/v1/users/{id}`
+- `GET /api/v1/users/email/{email}`
 
 ## Notes
 
