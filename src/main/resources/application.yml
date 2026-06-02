@@ -1,17 +1,27 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: user-service
+
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/shopopedia}
-    username: ${DB_USERNAME:shopopedia}
-    password: ${DB_PASSWORD:shopopedia}
+    url: jdbc:oracle:thin:@localhost:1521/FREEPDB1
+    username: user_service
+    password: user_service_pass
+    driver-class-name: oracle.jdbc.OracleDriver
+
   jpa:
     hibernate:
       ddl-auto: update
-    open-in-view: false
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.OracleDialect
 
-server:
-  port: ${SERVER_PORT:8081}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

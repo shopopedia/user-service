@@ -78,11 +78,14 @@ Build the project:
 ./gradlew build
 ```
 
-## API Endpoints
+Base URL: `http://localhost:8082`
 
-- `POST /api/v1/users/register`
-- `GET /api/v1/users/{id}`
-- `GET /api/v1/users/email/{email}`
+## API Docs
+
+- [register.md](./register.md) - `POST http://localhost:8082/api/v1/users/register`
+- [login.md](./login.md) - `GET http://localhost:8082/api/v1/users/{id}`
+- [email.md](./email.md) - `GET http://localhost:8082/api/v1/users/email/{email}`
+- [user-service.md](./user-service.md) - database structure and table mapping
 
 ## Notes
 
