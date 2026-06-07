@@ -38,6 +38,7 @@ curl -X GET "http://localhost:8082/api/v1/users/1" \
     "id": 1,
     "email": "john.doe@example.com",
     "firstName": "John",
+    "contact": "9876543210",
     "lastName": "Doe",
     "status": "ACTIVE"
   },

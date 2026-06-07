@@ -1,0 +1,9 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/FREEPDB1
+    username: user_service
+    password: user_service_pass
+    driver-class-name: oracle.jdbc.OracleDriver

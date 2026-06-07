@@ -7,12 +7,13 @@ Base URL: `http://localhost:8082`
 ## What this does
 
 Creates a new user record in the system.
+The API accepts `firstName`, `email`, `contact`, and `password`. `lastName` is still optional for backward compatibility, and `password` is stored as a hash instead of being returned.
 
 ## Steps
 
 1. Start the service.
 2. Send a `POST` request to `/api/v1/users/register`.
-3. Include a JSON body with `email`, `firstName`, and optionally `lastName`.
+3. Include a JSON body with `email`, `firstName`, `contact`, `password`, and optionally `lastName`.
 4. The API validates the request.
 5. If the email does not already exist, the user is stored in the database.
 6. A success response is returned with the created user details.
@@ -30,7 +31,8 @@ Accept: application/json
 {
   "email": "john.doe@example.com",
   "firstName": "John",
-  "lastName": "Doe"
+  "contact": "9876543210",
+  "password": "Secret123!"
 }
 ```
 
@@ -38,6 +40,8 @@ Accept: application/json
 
 - `email`: required, must be a valid email address
 - `firstName`: required, maximum 100 characters
+- `contact`: required, maximum 20 characters
+- `password`: required, minimum 8 characters and maximum 72 characters
 - `lastName`: optional, maximum 100 characters
 
 ## Example cURL
@@ -48,7 +52,8 @@ curl -X POST "http://localhost:8082/api/v1/users/register" \
   -d '{
     "email": "john.doe@example.com",
     "firstName": "John",
-    "lastName": "Doe"
+    "contact": "9876543210",
+    "password": "Secret123!"
   }'
 ```
 
@@ -62,7 +67,8 @@ curl -X POST "http://localhost:8082/api/v1/users/register" \
     "id": 1,
     "email": "john.doe@example.com",
     "firstName": "John",
-    "lastName": "Doe",
+    "contact": "9876543210",
+    "lastName": null,
     "status": "ACTIVE"
   },
   "timestamp": "2026-06-02T12:00:00Z"

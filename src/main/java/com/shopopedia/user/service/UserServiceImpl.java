@@ -8,20 +8,24 @@ import com.shopopedia.user.exception.UserNotFoundException;
 import com.shopopedia.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     @Transactional
     public UserResponse registerUser(RegisterUserRequest request) {
         String normalizedEmail = normalizeEmail(request.email());
+        String normalizedContact = normalizeContact(request.contact());
         if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
             throw new UserAlreadyExistsException("User already exists with email: " + normalizedEmail);
         }
@@ -29,7 +33,9 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setEmail(normalizedEmail);
         user.setFirstName(request.firstName().trim());
+        user.setContact(normalizedContact);
         user.setLastName(request.lastName() == null ? null : request.lastName().trim());
+        user.setPasswordHash(passwordEncoder.encode(request.password()));
 
         User saved = userRepository.save(user);
         return toUserResponse(saved);
@@ -57,6 +63,7 @@ public class UserServiceImpl implements UserService {
                 user.getId(),
                 user.getEmail(),
                 user.getFirstName(),
+                user.getContact(),
                 user.getLastName(),
                 user.getStatus()
         );
@@ -64,5 +71,9 @@ public class UserServiceImpl implements UserService {
 
     private String normalizeEmail(String email) {
         return email == null ? null : email.trim().toLowerCase();
+    }
+
+    private String normalizeContact(String contact) {
+        return contact == null ? null : contact.trim();
     }
 }

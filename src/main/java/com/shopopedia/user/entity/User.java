@@ -26,6 +26,12 @@ public class User {
     @Column(nullable = false, length = 100)
     private String firstName;
 
+    @Column(length = 20)
+    private String contact;
+
+    @Column(length = 255)
+    private String passwordHash;
+
     @Column(length = 100)
     private String lastName;
 
@@ -61,6 +67,22 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public String getLastName() {
@@ -104,15 +126,21 @@ public class User {
             status = UserStatus.ACTIVE;
         }
         email = normalizeEmail(email);
+        contact = normalizeValue(contact);
     }
 
     @PreUpdate
     void onUpdate() {
         updatedAt = LocalDateTime.now();
         email = normalizeEmail(email);
+        contact = normalizeValue(contact);
     }
 
     private String normalizeEmail(String rawEmail) {
         return rawEmail == null ? null : rawEmail.trim().toLowerCase();
+    }
+
+    private String normalizeValue(String rawValue) {
+        return rawValue == null ? null : rawValue.trim();
     }
 }
